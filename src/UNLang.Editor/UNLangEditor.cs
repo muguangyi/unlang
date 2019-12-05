@@ -16,10 +16,10 @@ namespace UNLang.Editor
 {
     public class UNLangEditor : NodeEditor<LangNode>
     {
-        [MenuItem("UNLang Editor...")]
+        [MenuItem("UNLang...")]
         public static void Open()
         {
-            GetWindow<UNLangEditor>("Jigsaw");
+            GetWindow<UNLangEditor>("UNLang");
         }
 
         public UNLangEditor()
