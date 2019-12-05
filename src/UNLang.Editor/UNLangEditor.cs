@@ -16,7 +16,7 @@ namespace UNLang.Editor
 {
     public class UNLangEditor : NodeEditor<LangNode>
     {
-        [MenuItem("GameBox/Jigsaw Editor...")]
+        [MenuItem("UNLang Editor...")]
         public static void Open()
         {
             GetWindow<UNLangEditor>("Jigsaw");
