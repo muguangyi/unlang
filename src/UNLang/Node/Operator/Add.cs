@@ -12,16 +12,26 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Add module to do addition.
+    /// </summary>
     [NodeInterface("+", "UNLang/Operator/")]
     public sealed class Add : LangNode
     {
+        private LangValue v0 = null;
+        private LangValue v1 = null;
+        private LangSpot s0 = null;
+        private LangSpot s1 = null;
+        private LangSpot sr = null;
+        private uint pcount = 0;
+
         public override void Init()
         {
-            this.type = new LangType();
-            this.type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
+            this.Type = new LangType();
+            this.Type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
 
-            this.v0 = new LangValue(this.type);
-            this.v1 = new LangValue(this.type);
+            this.v0 = new LangValue(this.Type);
+            this.v1 = new LangValue(this.Type);
 
             Add(this.s0 = new LangSpot("A", LangType.Category.Object, this, 1, SpotType.In));
             Add(this.s1 = new LangSpot("B", LangType.Category.Object, this, 1, SpotType.In));
@@ -34,7 +44,7 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    var bytes = this.type.Export();
+                    var bytes = this.Type.Export();
                     writer.Write(bytes.Length);
                     writer.Write(bytes);
                 }
@@ -50,7 +60,7 @@ namespace UNLang
                 using (var reader = new BinaryReader(stream))
                 {
                     var length = reader.ReadInt32();
-                    this.type.Import(reader.ReadBytes(length));
+                    this.Type.Import(reader.ReadBytes(length));
                 }
             }
         }
@@ -78,7 +88,7 @@ namespace UNLang
             if (2 == this.pcount)
             {
                 this.pcount = 0;
-                switch (this.type.Type)
+                switch (this.Type.Type)
                 {
                 case LangType.Category.Integer:
                     {
@@ -102,27 +112,13 @@ namespace UNLang
             }
         }
 
-        public LangType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public LangType Type { get; private set; } = null;
 
         private void OnNotify(object target, Message message)
         {
-            this.s0.OnChangeTypeCategory(this.type.Type);
-            this.s1.OnChangeTypeCategory(this.type.Type);
-            this.sr.OnChangeTypeCategory(this.type.Type);
+            this.s0.OnChangeTypeCategory(this.Type.Type);
+            this.s1.OnChangeTypeCategory(this.Type.Type);
+            this.sr.OnChangeTypeCategory(this.Type.Type);
         }
-
-        private LangType type = null;
-        private LangValue v0 = null;
-        private LangValue v1 = null;
-        private LangSpot s0 = null;
-        private LangSpot s1 = null;
-        private LangSpot sr = null;
-        private uint pcount = 0;
     }
 }

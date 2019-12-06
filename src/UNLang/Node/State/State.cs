@@ -11,13 +11,19 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// State module to define the base state machine.
+    /// </summary>
     [NodeInterface("State", "UNLang/State/")]
     public class State : LangNode
     {
+        private LangInstance subinstance = null;
+        private bool validity = true;
+
         public override void Init()
         {
             this.subinstance = new LangInstance();
-            this.stateVars = new LangVars();
+            this.StateVars = new LangVars();
 
             Add(new LangSpot("Begin", LangType.Category.Any, this, -1, SpotType.In));
             Add(new LangSpot("Abort", LangType.Category.Any, this, -1, SpotType.In));
@@ -73,7 +79,7 @@ namespace UNLang
             GetAt(4).Signal(instance);
             OnExit(instance);
             this.subinstance.Reset();
-            this.stateVars.Reset();
+            this.StateVars.Reset();
             this.validity = false;
         }
 
@@ -89,13 +95,7 @@ namespace UNLang
             if (this.validity) { OnNotify<T>(instance, m, args); }
         }
 
-        internal LangVars StateVars
-        {
-            get
-            {
-                return this.stateVars;
-            }
-        }
+        internal LangVars StateVars { get; private set; } = null;
 
         protected virtual void OnEnter(LangInstance instance)
         { }
@@ -111,9 +111,5 @@ namespace UNLang
 
         protected virtual void OnGizmos(LangInstance instance)
         { }
-
-        private LangInstance subinstance = null;
-        private LangVars stateVars = null;
-        private bool validity = true;
     }
 }

@@ -11,6 +11,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Abstract base script node of UNLang.
+    /// </summary>
     public abstract class LangNode : Node
     {
         public override void Init()
@@ -33,14 +36,6 @@ namespace UNLang
         public virtual void Begin(LangInstance instance)
         { }
 
-        protected LangInstance Instance
-        {
-            get
-            {
-                return this.instance;
-            }
-        }
-
-        private LangInstance instance = null;
+        protected LangInstance Instance { get; } = null;
     }
 }

@@ -14,6 +14,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// LangInstance maintains script runtime.
+    /// </summary>
     public sealed class LangInstance : IDisposable
     {
         public LangInstance()

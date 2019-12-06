@@ -11,8 +11,14 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// UNLang spot type.
+    /// </summary>
     public sealed class LangSpot : Spot
     {
+        private LangType.Category category = LangType.Category.Any;
+        private uint priority = 0;
+
         public LangSpot(string name, LangType.Category category, Node owner, int capacity, SpotType type)
             : base(owner, capacity, type)
         {
@@ -46,9 +52,6 @@ namespace UNLang
 
             return false;
         }
-
-        private LangType.Category category = LangType.Category.Any;
-        private uint priority = 0;
 
         private static uint QueryPriority(LangType.Category valueType)
         {

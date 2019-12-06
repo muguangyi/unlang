@@ -12,13 +12,18 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Constant module to send a const value to next module.
+    /// </summary>
     [NodeInterface("Constant", "UNLang/Value/")]
     public sealed class Constant : LangNode
     {
+        private LangSpot spot = null;
+
         public override void Init()
         {
-            this.value = new LangValue(new LangType());
-            this.value.Type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
+            this.Value = new LangValue(new LangType());
+            this.Value.Type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
 
             Add(new LangSpot("", LangType.Category.Any, this, -1, SpotType.In));
             Add(this.spot = new LangSpot("Value", LangType.Category.Object, this, 1, SpotType.Out));
@@ -30,7 +35,7 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    var bytes = this.value.Export();
+                    var bytes = this.Value.Export();
                     writer.Write(bytes.Length);
                     writer.Write(bytes);
                 }
@@ -46,30 +51,21 @@ namespace UNLang
                 using (var reader = new BinaryReader(stream))
                 {
                     var length = reader.ReadInt32();
-                    this.value.Import(reader.ReadBytes(length));
+                    this.Value.Import(reader.ReadBytes(length));
                 }
             }
         }
 
         public override void OnSignal(Spot spot, params object[] args)
         {
-            this.spot.Signal(args[0], this.value.Value);
+            this.spot.Signal(args[0], this.Value.Value);
         }
 
-        public LangValue Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
+        public LangValue Value { get; private set; } = null;
 
         private void OnNotify(object target, Message message)
         {
-            this.spot.OnChangeTypeCategory(this.value.Type.Type);
+            this.spot.OnChangeTypeCategory(this.Value.Type.Type);
         }
-
-        private LangValue value = null;
-        private LangSpot spot = null;
     }
 }

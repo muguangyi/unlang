@@ -11,6 +11,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Entry module defines the script start entrance.
+    /// </summary>
     [NodeInterface("Entry", "UNLang/")]
     public sealed class Entry : LangNode
     {

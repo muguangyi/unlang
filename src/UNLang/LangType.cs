@@ -13,6 +13,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// UNLang value type.
+    /// </summary>
     public class LangType : UnityEngine.Object, IDisposable
     {
         public enum Category
@@ -32,13 +35,13 @@ namespace UNLang
 
         public LangType()
         {
-            this.dispatcher = new Dispatcher(this);
+            this.Dispatcher = new Dispatcher(this);
         }
 
         public void Dispose()
         {
-            this.dispatcher.Dispose();
-            this.dispatcher = null;
+            this.Dispatcher.Dispose();
+            this.Dispatcher = null;
         }
 
         public byte[] Export()
@@ -47,7 +50,7 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    writer.Write((byte)this.type);
+                    writer.Write((byte)this.Type);
                 }
 
                 return stream.ToArray();
@@ -67,27 +70,12 @@ namespace UNLang
 
         public void OnChange(Category type)
         {
-            this.type = type;
-            this.dispatcher.Notify(new Message(CHANGE));
+            this.Type = type;
+            this.Dispatcher.Notify(new Message(CHANGE));
         }
 
-        public Category Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public Category Type { get; private set; } = Category.Any;
 
-        public Dispatcher Dispatcher
-        {
-            get
-            {
-                return this.dispatcher;
-            }
-        }
-
-        private Category type = Category.Any;
-        private Dispatcher dispatcher = null;
+        public Dispatcher Dispatcher { get; private set; } = null;
     }
 }

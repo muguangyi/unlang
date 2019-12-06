@@ -12,6 +12,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Unity Debug output module.
+    /// </summary>
     [NodeInterface("Console", "UNLang/Debug/")]
     public sealed class Console : LangNode
     {

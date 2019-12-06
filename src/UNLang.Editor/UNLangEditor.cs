@@ -14,8 +14,14 @@ using UNode.Editor;
 
 namespace UNLang.Editor
 {
+    /// <summary>
+    /// UNLang editor.
+    /// </summary>
     public class UNLangEditor : NodeEditor<LangNode>
     {
+        private INodeRunnerDebugger debugger = null;
+        private Vector2 debugScrollPos = new Vector2();
+
         [MenuItem("UNLang...")]
         public static void Open()
         {
@@ -91,9 +97,6 @@ namespace UNLang.Editor
                 NodeVM.StopDebugger();
             }
         }
-
-        private INodeRunnerDebugger debugger = null;
-        private Vector2 debugScrollPos = new Vector2();
     }
 }
 

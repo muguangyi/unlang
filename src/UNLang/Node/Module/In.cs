@@ -11,14 +11,20 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// In module for a sub graph input parameters.
+    /// </summary>
     [NodeInterface("In", "UNLang/Module/")]
     [GraphInterface(SpotType.In)]
     public sealed class In : LangNode
     {
+        private LangSpot s = null;
+        private LangSpot ss = null;
+
         public override void Init()
         {
-            this.type = new LangType();
-            this.type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
+            this.Type = new LangType();
+            this.Type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
 
             Add(this.s = new LangSpot("In", LangType.Category.Any, this, -1, SpotType.In));
             Add(this.ss = new LangSpot("", LangType.Category.Any, this, 1, SpotType.Out));
@@ -42,22 +48,12 @@ namespace UNLang
             }
         }
 
-        public LangType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public LangType Type { get; private set; } = null;
 
         private void OnNotify(object target, Message message)
         {
-            this.s.OnChangeTypeCategory(this.type.Type);
-            this.ss.OnChangeTypeCategory(this.type.Type);
+            this.s.OnChangeTypeCategory(this.Type.Type);
+            this.ss.OnChangeTypeCategory(this.Type.Type);
         }
-
-        private LangSpot s = null;
-        private LangSpot ss = null;
-        private LangType type = null;
     }
 }

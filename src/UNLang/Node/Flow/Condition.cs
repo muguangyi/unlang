@@ -11,6 +11,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Condition module checks input boolean value and trigger different output signal.
+    /// </summary>
     [NodeInterface("Condition", "UNLang/Flow/")]
     public sealed class Condition : LangNode
     {

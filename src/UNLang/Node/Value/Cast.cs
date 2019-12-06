@@ -14,13 +14,16 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Cast module to cast any value to target type.
+    /// </summary>
     [NodeInterface("Cast", "UNLang/Value/")]
     public sealed class Cast : LangNode
     {
         public override void Init()
         {
-            this.tf = new LangType();
-            this.tt = new LangType();
+            this.From = new LangType();
+            this.To = new LangType();
 
             Add(new LangSpot("From", LangType.Category.Object, this, 1, SpotType.In));
             Add(new LangSpot("To", LangType.Category.Object, this, 1, SpotType.Out));
@@ -32,10 +35,10 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    var fbytes = this.tf.Export();
+                    var fbytes = this.From.Export();
                     writer.Write(fbytes.Length);
                     writer.Write(fbytes);
-                    var tbytes = this.tt.Export();
+                    var tbytes = this.To.Export();
                     writer.Write(tbytes.Length);
                     writer.Write(tbytes);
                 }
@@ -50,8 +53,8 @@ namespace UNLang
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    this.tf.Import(reader.ReadBytes(reader.ReadInt32()));
-                    this.tf.Import(reader.ReadBytes(reader.ReadInt32()));
+                    this.From.Import(reader.ReadBytes(reader.ReadInt32()));
+                    this.From.Import(reader.ReadBytes(reader.ReadInt32()));
                 }
             }
         }
@@ -63,7 +66,7 @@ namespace UNLang
                 object result = null;
                 try
                 {
-                    switch (this.tt.Type)
+                    switch (this.To.Type)
                     {
                     case LangType.Category.Boolean:
                         {
@@ -109,23 +112,8 @@ namespace UNLang
             }
         }
 
-        public LangType From
-        {
-            get
-            {
-                return this.tf;
-            }
-        }
+        public LangType From { get; private set; } = null;
 
-        public LangType To
-        {
-            get
-            {
-                return this.tt;
-            }
-        }
-
-        private LangType tf = null;
-        private LangType tt = null;
+        public LangType To { get; private set; } = null;
     }
 }

@@ -12,18 +12,21 @@ using System.IO;
 
 namespace UNLang
 {
+    /// <summary>
+    /// UNLang value.
+    /// </summary>
     public sealed class LangValue : UnityEngine.Object, IDisposable
     {
         public LangValue(LangType type)
         {
-            this.type = type;
+            this.Type = type;
         }
 
         public void Dispose()
         {
-            this.type.Dispose();
-            this.type = null;
-            this.value = null;
+            this.Type.Dispose();
+            this.Type = null;
+            this.Value = null;
         }
 
         public byte[] Export()
@@ -32,22 +35,22 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    var bytes = this.type.Export();
+                    var bytes = this.Type.Export();
                     writer.Write(bytes.Length);
                     writer.Write(bytes);
-                    switch (this.type.Type)
+                    switch (this.Type.Type)
                     {
                     case LangType.Category.Boolean:
-                        writer.Write((bool)this.value);
+                        writer.Write((bool)this.Value);
                         break;
                     case LangType.Category.Integer:
-                        writer.Write((int)this.value);
+                        writer.Write((int)this.Value);
                         break;
                     case LangType.Category.Float:
-                        writer.Write((float)this.value);
+                        writer.Write((float)this.Value);
                         break;
                     case LangType.Category.String:
-                        writer.Write((string)this.value);
+                        writer.Write((string)this.Value);
                         break;
                     default:
                         break;
@@ -66,20 +69,20 @@ namespace UNLang
                 {
                     var length = reader.ReadInt32();
                     var bytes = reader.ReadBytes(length);
-                    this.type.Import(bytes);
-                    switch (this.type.Type)
+                    this.Type.Import(bytes);
+                    switch (this.Type.Type)
                     {
                     case LangType.Category.Boolean:
-                        this.value = reader.ReadBoolean();
+                        this.Value = reader.ReadBoolean();
                         break;
                     case LangType.Category.Integer:
-                        this.value = reader.ReadInt32();
+                        this.Value = reader.ReadInt32();
                         break;
                     case LangType.Category.Float:
-                        this.value = reader.ReadSingle();
+                        this.Value = reader.ReadSingle();
                         break;
                     case LangType.Category.String:
-                        this.value = reader.ReadString();
+                        this.Value = reader.ReadString();
                         break;
                     default:
                         break;
@@ -88,28 +91,9 @@ namespace UNLang
             }
         }
 
-        public LangType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public LangType Type { get; private set; } = null;
 
-        public object Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
-        }
-
-        private LangType type = null;
-        private object value = null;
+        public object Value { get; set; } = null;
 
         public static T Cast<T>(object value)
         {

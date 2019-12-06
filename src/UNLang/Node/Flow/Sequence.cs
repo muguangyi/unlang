@@ -11,6 +11,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// Sequence module triggers less or equal than 10 signals one by one.
+    /// </summary>
     [NodeInterface("Sequence", "UNLang/Flow/")]
     public sealed class Sequence : LangNode
     {

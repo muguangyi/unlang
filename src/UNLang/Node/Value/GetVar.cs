@@ -12,13 +12,18 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// GetVar module to get target domain variable by name.
+    /// </summary>
     [NodeInterface("GetVar", "UNLang/Value/")]
     public sealed class GetVar : LangNode
     {
+        private LangSpot spot = null;
+
         public override void Init()
         {
-            this.type = new LangType();
-            this.type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
+            this.Type = new LangType();
+            this.Type.Dispatcher.AddListener(LangType.CHANGE, OnNotify);
 
             Add(new LangSpot("", LangType.Category.Any, this, 1, SpotType.In));
             Add(this.spot = new LangSpot("Value", LangType.Category.Object, this, 1, SpotType.Out));
@@ -30,9 +35,9 @@ namespace UNLang
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    writer.Write((byte)this.scope);
-                    writer.Write(this.variable);
-                    var bytes = this.type.Export();
+                    writer.Write((byte)this.Scope);
+                    writer.Write(this.Variable);
+                    var bytes = this.Type.Export();
                     writer.Write(bytes.Length);
                     writer.Write(bytes);
                 }
@@ -47,10 +52,10 @@ namespace UNLang
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    this.scope = (LangVars.Scope)reader.ReadByte();
-                    this.variable = reader.ReadString();
+                    this.Scope = (LangVars.Scope)reader.ReadByte();
+                    this.Variable = reader.ReadString();
                     var length = reader.ReadInt32();
-                    this.type.Import(reader.ReadBytes(length));
+                    this.Type.Import(reader.ReadBytes(length));
                 }
             }
         }
@@ -58,51 +63,20 @@ namespace UNLang
         public override void OnSignal(Spot spot, params object[] args)
         {
             var instance = args[0] as LangInstance;
-            LangVars vars = instance.GetVars(this.scope);
+            LangVars vars = instance.GetVars(this.Scope);
             var value = vars.Get(this.Variable);
             GetAt(1).Signal(instance, value);
         }
 
-        public LangVars.Scope Scope
-        {
-            get
-            {
-                return this.scope;
-            }
-            set
-            {
-                this.scope = value;
-            }
-        }
+        public LangVars.Scope Scope { get; set; } = LangVars.Scope.State;
 
-        public LangType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public LangType Type { get; private set; } = null;
 
-        public string Variable
-        {
-            get
-            {
-                return this.variable;
-            }
-            set
-            {
-                this.variable = value;
-            }
-        }
+        public string Variable { get; set; } = null;
 
         private void OnNotify(object target, Message message)
         {
-            this.spot.OnChangeTypeCategory(this.type.Type);
+            this.spot.OnChangeTypeCategory(this.Type.Type);
         }
-
-        private LangVars.Scope scope = LangVars.Scope.State;
-        private LangType type = null;
-        private string variable = null;
-        private LangSpot spot = null;
     }
 }

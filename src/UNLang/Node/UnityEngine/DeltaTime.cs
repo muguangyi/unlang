@@ -12,6 +12,9 @@ using UNode;
 
 namespace UNLang
 {
+    /// <summary>
+    /// DeltaTime module to send frame delta time to next module.
+    /// </summary>
     [NodeInterface("DeltaTime", "UNLang/UnityEngine/")]
     public sealed class DeltaTime : LangNode
     {

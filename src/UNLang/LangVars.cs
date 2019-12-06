@@ -13,6 +13,9 @@ using System.Reflection;
 
 namespace UNLang
 {
+    /// <summary>
+    /// UNLang variable container.
+    /// </summary>
     public sealed class LangVars : IDisposable
     {
         public enum Scope
@@ -22,6 +25,9 @@ namespace UNLang
             Instance,
             State,
         }
+
+        private readonly Dictionary<string, IObject> vars = null;
+        private static LangVars globalVars = null;
 
         public LangVars(object host = null)
         {
@@ -39,9 +45,7 @@ namespace UNLang
         }
 
         public void Dispose()
-        {
-            this.vars = null;
-        }
+        { }
 
         public void Reset()
         {
@@ -50,8 +54,7 @@ namespace UNLang
 
         public void Set(string key, object value)
         {
-            IObject obj = null;
-            if (!this.vars.TryGetValue(key, out obj))
+            if (!this.vars.TryGetValue(key, out IObject obj))
             {
                 this.vars.Add(key, obj = new ValueObject());
             }
@@ -66,8 +69,7 @@ namespace UNLang
 
         public T Get<T>(string key, T defaultValue = default(T))
         {
-            IObject obj = null;
-            if (this.vars.TryGetValue(key, out obj))
+            if (this.vars.TryGetValue(key, out IObject obj))
             {
                 return (T)obj.Value;
             }
@@ -88,23 +90,14 @@ namespace UNLang
             public ValueObject()
             { }
 
-            public object Value
-            {
-                get
-                {
-                    return this.value;
-                }
-                set
-                {
-                    this.value = value;
-                }
-            }
-
-            private object value;
+            public object Value { get; set; }
         }
 
         private class HostObject : IObject
         {
+            private readonly object host = null;
+            private readonly PropertyInfo property = null;
+
             public HostObject(object host, PropertyInfo property)
             {
                 this.host = host;
@@ -132,12 +125,7 @@ namespace UNLang
                     }
                 }
             }
-
-            private object host = null;
-            private PropertyInfo property = null;
         }
-
-        private Dictionary<string, IObject> vars = null;
 
         public static LangVars GlobalVars
         {
@@ -151,7 +139,5 @@ namespace UNLang
                 return globalVars;
             }
         }
-
-        private static LangVars globalVars = null;
     }
 }
