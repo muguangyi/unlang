@@ -12,7 +12,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("+", "GameBox.Jigsaw/Operator/")]
+    [NodeInterface("+", "UNLang/Operator/")]
     public sealed class Add : LangNode
     {
         public override void Init()

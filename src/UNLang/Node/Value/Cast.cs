@@ -14,7 +14,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("Cast", "GameBox.Jigsaw/Value/")]
+    [NodeInterface("Cast", "UNLang/Value/")]
     public sealed class Cast : LangNode
     {
         public override void Init()

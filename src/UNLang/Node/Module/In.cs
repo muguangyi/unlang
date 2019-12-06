@@ -11,7 +11,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("In", "GameBox.Jigsaw/Module/")]
+    [NodeInterface("In", "UNLang/Module/")]
     [GraphInterface(SpotType.In)]
     public sealed class In : LangNode
     {

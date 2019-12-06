@@ -12,7 +12,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("DeltaTime", "GameBox.Jigsaw/UnityEngine/")]
+    [NodeInterface("DeltaTime", "UNLang/UnityEngine/")]
     public sealed class DeltaTime : LangNode
     {
         public override void Init()

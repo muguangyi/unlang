@@ -11,7 +11,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("Condition", "GameBox.Jigsaw/Flow/")]
+    [NodeInterface("Condition", "UNLang/Flow/")]
     public sealed class Condition : LangNode
     {
         public override void Init()

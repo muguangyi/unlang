@@ -13,7 +13,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("Compare", "GameBox.Jigsaw/Operator/")]
+    [NodeInterface("Compare", "UNLang/Operator/")]
     public sealed class Compare : LangNode
     {
         public override void Init()

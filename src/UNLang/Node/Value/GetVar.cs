@@ -12,7 +12,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("GetVar", "GameBox.Jigsaw/Value/")]
+    [NodeInterface("GetVar", "UNLang/Value/")]
     public sealed class GetVar : LangNode
     {
         public override void Init()

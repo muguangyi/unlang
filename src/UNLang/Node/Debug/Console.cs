@@ -12,7 +12,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("Console", "GameBox.Jigsaw/Debug/")]
+    [NodeInterface("Console", "UNLang/Debug/")]
     public sealed class Console : LangNode
     {
         public override void Init()

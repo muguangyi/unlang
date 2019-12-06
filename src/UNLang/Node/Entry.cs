@@ -11,7 +11,7 @@ using UNode;
 
 namespace UNLang
 {
-    [NodeInterface("Entry", "GameBox.Jigsaw/")]
+    [NodeInterface("Entry", "UNLang/")]
     public sealed class Entry : LangNode
     {
         public override void Init()
