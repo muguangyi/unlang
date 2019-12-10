@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UNLang", "src\UNLang\UNLang.csproj", "{B08BFBE6-2E2C-489F-B873-4CC731861BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNLang.Editor", "src\UNLang.Editor\UNLang.Editor.csproj", "{67B7B41A-64C9-4999-9BBB-7A2CB5574F3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UNLang.Editor", "src\UNLang.Editor\UNLang.Editor.csproj", "{67B7B41A-64C9-4999-9BBB-7A2CB5574F3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

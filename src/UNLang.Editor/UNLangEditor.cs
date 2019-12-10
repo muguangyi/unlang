@@ -22,7 +22,7 @@ namespace UNLang.Editor
         private INodeRunnerDebugger debugger = null;
         private Vector2 debugScrollPos = new Vector2();
 
-        [MenuItem("UNLang...")]
+        [MenuItem("UNLang/IDE...")]
         public static void Open()
         {
             GetWindow<UNLangEditor>("UNLang");

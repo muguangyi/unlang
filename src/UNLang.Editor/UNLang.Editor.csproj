@@ -4,19 +4,25 @@
   </PropertyGroup>
   
   <PropertyGroup>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>../../build</OutputPath>
+    <OutputPath>../../build/Editor</OutputPath>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>../../build</OutputPath>
+    <OutputPath>../../build/Editor</OutputPath>
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\UNLang\UNLang.csproj" />
+    <ProjectReference Include="..\UNLang\UNLang.csproj">
+      <Private>false</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +40,10 @@
     </Reference>
     <Reference Include="UNode">
       <HintPath>..\..\lib\UNode\netstandard2.0\UNode.dll</HintPath>
-      <Private>true</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UNode.Editor">
-      <HintPath>..\..\lib\UNode\netstandard2.0\UNode.Editor.dll</HintPath>
+      <HintPath>..\..\lib\UNode\netstandard2.0\Editor\UNode.Editor.dll</HintPath>
       <Private>true</Private>
     </Reference>
   </ItemGroup>
