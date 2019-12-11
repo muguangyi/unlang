@@ -2,11 +2,11 @@
 
 > Unity Node Language.
 
-Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and Abilities](https://www.gdcvault.com/play/1024653/Networking-Scripted-Weapons-and-Abilities)) on GDC 2017, and implement the similiar scripting system in Unity.
+Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and Abilities](https://www.gdcvault.com/play/1024653/Networking-Scripted-Weapons-and-Abilities)) on GDC 2017, and implement the similiar scripting system in **Unity**.
 
 ## Install
 
-* Clone or download the target binary [release](https://github.com/muguangyi/unlang-release) project.
+* Clone or download the target binary [release](https://github.com/muguangyi/unlang-release) project. (Of cause, you could clone the project and compile by yourself)
 * Copy all files to a separated folder under Unity project, for example, `[UnityProject]/Assets/UNLang`.
 
 ## Quick Start
@@ -68,7 +68,7 @@ Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and 
   }
   ```
 
-* Congrats with "Hello UNLang!" in Unity console window.
+* Congrats with `Hello UNLang!` in Unity console window.
 
 ## Documentation
 
