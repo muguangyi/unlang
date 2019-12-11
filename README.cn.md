@@ -1,5 +1,7 @@
 # UNLang
 
+![build](https://github.com/muguangyi/unlang/workflows/build/badge.svg)
+
 > Unity Node Language.
 
 灵感来自于暴雪守望先锋团队在GDC 2017上的一篇技术演讲（[Networking Scripted Weapons and Abilities](https://www.gdcvault.com/play/1024653/Networking-Scripted-Weapons-and-Abilities)）, 之后在**Unity**中实现了一套类似的脚本系统。
