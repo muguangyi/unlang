@@ -74,7 +74,7 @@ Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and 
 
 ## Documentation
 
-More examples or detail information please refer to [Wiki](https://github.com/muguangyi/unlang/wiki).
+More examples or detail information please refer to [doc](https://muguangyi.github.io/unlang.io).
 
 ## Maintainer
 

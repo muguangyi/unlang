@@ -73,7 +73,7 @@
 
 ## 文档
 
-更多例子和详细信息，请参考[Wiki](https://github.com/muguangyi/unlang/wiki).
+更多例子和详细信息，请参考[doc](https://muguangyi.github.io/unlang.io)。
 
 ## 维护者
 
