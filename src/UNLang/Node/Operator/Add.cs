@@ -67,6 +67,7 @@ namespace UNLang
 
         public override void OnSignal(Spot spot, params object[] args)
         {
+            // TODO: Miss handling the output signal back flow.
             ++this.pcount;
             if (spot.Name == "A")
             {
