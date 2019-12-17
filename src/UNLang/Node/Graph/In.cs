@@ -14,7 +14,7 @@ namespace UNLang
     /// <summary>
     /// In module for a sub graph input parameters.
     /// </summary>
-    [NodeInterface("In", "UNLang/Module/")]
+    [NodeInterface("In", "UNLang/Graph/")]
     [GraphInterface(SpotType.In)]
     public sealed class In : LangNode
     {

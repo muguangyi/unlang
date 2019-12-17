@@ -15,7 +15,7 @@ namespace UNLang
     /// <summary>
     /// Unity Debug output module.
     /// </summary>
-    [NodeInterface("Console", "UNLang/Debug/")]
+    [NodeInterface("Console", "UNLang/UnityEngine/")]
     public sealed class Console : LangNode
     {
         public override void Init()

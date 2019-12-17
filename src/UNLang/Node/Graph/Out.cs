@@ -14,7 +14,7 @@ namespace UNLang
     /// <summary>
     /// Out module to define a sub graph return value.
     /// </summary>
-    [NodeInterface("Out", "UNLang/Module/")]
+    [NodeInterface("Out", "UNLang/Graph/")]
     [GraphInterface(SpotType.Out)]
     public sealed class Out : LangNode
     {
