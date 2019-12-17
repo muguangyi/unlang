@@ -53,13 +53,16 @@
           // 接管装载器，因为我们把脚本文件存放在了Resources目录下了。
           NodeLoader.Load = file =>
           {
+              // 移除"Resources"相对路径以及文件扩展名。
+              file = file.Replace("/Resources/", "");
+              file = file.Substring(0, file.IndexOf("."));
               return Resources.Load<TextAsset>(file).bytes;
           };
 
           // 创建UNLang实例。
           this.instance = new LangInstance();
           // 装载脚本文件"1.bytes"。
-          this.instance.Load("1");
+          this.instance.Load("1.bytes");
           // 执行"Entry"模块作为入口。
           this.instance.Run<Entry>();
       }

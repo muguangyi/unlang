@@ -54,13 +54,16 @@ Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and 
           // under Resources folder.
           NodeLoader.Load = file =>
           {
+              // Remove "Resources" relative path and file extension.
+              file = file.Replace("/Resources/", "");
+              file = file.Substring(0, file.IndexOf("."));
               return Resources.Load<TextAsset>(file).bytes;
           };
 
           // Create UNLang instance.
           this.instance = new LangInstance();
           // Load script file "1.bytes".
-          this.instance.Load("1");
+          this.instance.Load("1.bytes");
           // Start the script from "Entry" module.
           this.instance.Run<Entry>();
       }
