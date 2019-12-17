@@ -20,7 +20,7 @@ namespace UNLang
     {
         public override void Init()
         {
-            Add(new LangSpot("", LangType.Category.Object, this, -1, SpotType.In));
+            Add(new LangSpot("", LangType.Category.Any, this, -1, SpotType.In));
             Add(new LangSpot("", LangType.Category.Any, this, 1, SpotType.Out));
         }
 

@@ -32,7 +32,8 @@ namespace UNLang
 
         public override void OnSignal(Spot spot, params object[] args)
         {
-            GetAt(1).Signal(args);
+            var index = spot.Type == SpotType.In ? 1 : 0;
+            GetAt(index).Signal(args);
         }
 
         public void OnChange(string spotName)
