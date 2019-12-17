@@ -1,5 +1,6 @@
-# ![logo](https://muguangyi.github.io/unlang.io/icon/favicon-32x32.png) UNLang
+# UNLang
 
+![logo](https://muguangyi.github.io/unlang.io/icon/favicon-96x96.png)
 ![build](https://github.com/muguangyi/unlang/workflows/build/badge.svg)
 
 > Unity Node Language.
