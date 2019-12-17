@@ -6,6 +6,8 @@
 
 灵感来自于暴雪守望先锋团队在GDC 2017上的一篇技术演讲（[Networking Scripted Weapons and Abilities](https://www.gdcvault.com/play/1024653/Networking-Scripted-Weapons-and-Abilities)）, 之后在**Unity**中实现了一套类似的脚本系统。
 
+![unlang-overview](doc/unlang-overview.png)
+
 ## 安装
 
 * Clone或者下载目标的二进制[发布](https://github.com/muguangyi/unlang-release)文件。（当然，你也可以自己clone代码并编译）

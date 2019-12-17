@@ -6,6 +6,8 @@
 
 Idea from Blizzard Overwatch team tech speech ([Networking Scripted Weapons and Abilities](https://www.gdcvault.com/play/1024653/Networking-Scripted-Weapons-and-Abilities)) on GDC 2017, and implement the similiar scripting system in **Unity**.
 
+![unlang-overview](doc/unlang-overview.png)
+
 ## Install
 
 * Clone or download the target binary [release](https://github.com/muguangyi/unlang-release) project. (Of cause, you could clone the project and compile by yourself)
