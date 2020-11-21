@@ -90,7 +90,7 @@ namespace UNLang
         {
             if (null != this.state)
             {
-                this.state.Execute(this);
+                this.state.Execute();
             }
         }
 
@@ -98,7 +98,7 @@ namespace UNLang
         {
             if (null != this.state)
             {
-                this.state.Notify(this, m, args);
+                this.state.Notify(m, args);
             }
         }
 
@@ -106,7 +106,7 @@ namespace UNLang
         {
             if (null != this.state)
             {
-                this.state.DrawGizmos(this);
+                this.state.DrawGizmos();
             }
         }
 
@@ -158,14 +158,14 @@ namespace UNLang
         {
             if (null != this.state)
             {
-                this.state.Exit(this);
+                this.state.Exit();
             }
 
             this.state = state;
 
             if (null != this.state)
             {
-                this.state.Enter(this);
+                this.state.Enter();
             }
         }
 

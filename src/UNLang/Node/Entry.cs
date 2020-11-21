@@ -22,9 +22,9 @@ namespace UNLang
             Add(new LangSpot("", LangType.Category.Any, this, 1, SpotType.Out));
         }
 
-        public override void Begin(LangInstance instance)
+        protected override void OnBegin()
         {
-            GetAt(0).Signal(instance);
+            GetAt(0).Signal(this.Instance);
         }
     }
 }

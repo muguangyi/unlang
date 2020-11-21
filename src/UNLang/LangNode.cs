@@ -33,9 +33,15 @@ namespace UNLang
         public override void OnSignal(Spot spot, params object[] args)
         { }
 
-        public virtual void Begin(LangInstance instance)
+        public void Begin(LangInstance instance)
+        {
+            this.Instance = instance;
+            OnBegin();
+        }
+
+        protected virtual void OnBegin()
         { }
 
-        protected LangInstance Instance { get; } = null;
+        protected LangInstance Instance { get; private set; } = null;
     }
 }

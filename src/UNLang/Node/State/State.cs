@@ -26,7 +26,6 @@ namespace UNLang
             this.StateVars = new LangVars();
 
             Add(new LangSpot("Begin", LangType.Category.Any, this, -1, SpotType.In));
-            Add(new LangSpot("Abort", LangType.Category.Any, this, -1, SpotType.In));
 
             Add(new LangSpot("OnEnter", LangType.Category.Any, this, 1, SpotType.Out));
             Add(new LangSpot("OnUpdate", LangType.Category.Any, this, 1, SpotType.Out));
@@ -42,74 +41,65 @@ namespace UNLang
             {
                 Begin(instance);
             }
-            else if ("Abort" == spot.Name)
-            {
-                Abort(instance);
-            }
         }
 
-        public override void Begin(LangInstance instance)
+        protected override void OnBegin()
         {
-            instance.ChangeState(this);
+            this.Instance.ChangeState(this);
         }
 
-        public void Abort(LangInstance instance)
-        {
-            instance.ChangeState(null);
-        }
-
-        public void Enter(LangInstance instance)
+        public void Enter()
         {
             this.validity = true;
-            this.subinstance.Set(instance);
-            GetAt(2).Signal(instance);
-            GetAt(5).Signal(this.subinstance);
-            OnEnter(instance);
+            this.subinstance.Set(this.Instance);
+            GetAt(1).Signal(this.Instance);
+            GetAt(4).Signal(this.subinstance);
+            OnEnter();
         }
 
-        public void Execute(LangInstance instance)
+        public void Execute()
         {
             if (this.validity) { this.subinstance.Update(); }
-            if (this.validity) { GetAt(3).Signal(instance); }
-            if (this.validity) { OnExecute(instance); }
+            if (this.validity) { GetAt(2).Signal(this.Instance); }
+            if (this.validity) { OnExecute(); }
         }
 
-        public void Exit(LangInstance instance)
+        public void Exit()
         {
-            GetAt(4).Signal(instance);
-            OnExit(instance);
+            GetAt(3).Signal(this.Instance);
+            OnExit();
             this.subinstance.Reset();
             this.StateVars.Reset();
             this.validity = false;
         }
 
-        public void DrawGizmos(LangInstance instance)
+        public void DrawGizmos()
         {
             if (this.validity) { this.subinstance.OnDrawGizmos(); }
-            if (this.validity) { OnGizmos(instance); }
+            if (this.validity) { OnGizmos(); }
         }
 
-        internal void Notify<T>(LangInstance instance, T m, params object[] args)
+        internal void Notify<T>(T m, params object[] args)
         {
             if (this.validity) { this.subinstance.Notify(m, args); }
-            if (this.validity) { OnNotify<T>(instance, m, args); }
+            if (this.validity) { OnNotify(m, args); }
         }
 
         internal LangVars StateVars { get; private set; } = null;
 
-        protected virtual void OnEnter(LangInstance instance)
+        protected virtual void OnEnter()
         { }
 
-        protected virtual void OnExecute(LangInstance instance)
+        protected virtual void OnExecute()
         { }
 
-        protected virtual void OnExit(LangInstance instance)
+        protected virtual void OnExit()
         { }
 
-        protected virtual void OnNotify<T>(LangInstance instance, T m, params object[] args)
+        protected virtual void OnNotify<T>(T m, params object[] args)
         { }
 
-        protected virtual void OnGizmos(LangInstance instance)
+        protected virtual void OnGizmos()
         { }
     }
 }
